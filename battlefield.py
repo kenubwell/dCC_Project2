@@ -47,25 +47,25 @@ class Battlefield:
         dinosaur = self.show_dino_opponent_options()
         if self.fleet.robots[0].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[0])
-            print(f'You hit {self.fleet.robots[0].name} and its health is now {self.fleet.robots[0].health}!\n')
+            print(f'\nYou hit {self.fleet.robots[0].name} and its health is now {self.fleet.robots[0].health}!\n')
         elif self.fleet.robots[1].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[1])
-            print(f'You hit {self.fleet.robots[1].name} and its health is now {self.fleet.robots[1].health}!\n')
+            print(f'\nYou hit {self.fleet.robots[1].name} and its health is now {self.fleet.robots[1].health}!\n')
         elif self.fleet.robots[2].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[2])
-            print(f'You hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
+            print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
 
     def robo_turn(self): #for loops
         robot = self.show_robo_opponent_options()
         if self.herd.dinosaurs[0].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[0])
-            print(f'You hit {self.herd.dinosaurs[0].name} and its health is now {self.herd.dinosaurs[0].health}!\n')
+            print(f'\nYou hit {self.herd.dinosaurs[0].name} and its health is now {self.herd.dinosaurs[0].health}!\n')
         elif self.herd.dinosaurs[1].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[1])
-            print(f'You hit {self.herd.dinosaurs[1].name} and its health is now {self.herd.dinosaurs[1].health}!\n')
+            print(f'\nYou hit {self.herd.dinosaurs[1].name} and its health is now {self.herd.dinosaurs[1].health}!\n')
         elif self.herd.dinosaurs[2].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[2])
-            print(f'You hit {self.herd.dinosaurs[2].name} and its health is now {self.herd.dinosaurs[2].health}!\n')
+            print(f'\nYou hit {self.herd.dinosaurs[2].name} and its health is now {self.herd.dinosaurs[2].health}!\n')
   
 
     def show_dino_opponent_options(self):
@@ -80,12 +80,15 @@ class Battlefield:
         user_select = int(input('Select a dinosaur for your attack: '))
         
         while selection is False:
-            if self.herd.dinosaurs[user_select].health > 0:
-                confirmed_select = user_select
-                selection = True
-            elif self.herd.dinosaurs[user_select].health <= 0:
-                print('Your Dino is already re-extinct (dead). Please select another Dino.')
-                user_select = int(input('Select another robot for your attack: '))
+            if user_select >= 0 and user_select <= 2:
+                if self.herd.dinosaurs[user_select].health > 0:
+                    confirmed_select = user_select
+                    selection = True
+                elif self.herd.dinosaurs[user_select].health <= 0:
+                    print('Your Dino is already re-extinct. Please select another Dino.')
+                    user_select = int(input('Select another robot for your attack: '))
+            elif user_select > 2 or user_select < 0:
+                user_select = int(input('Invalid entry. Select a robot for your attack: '))
         return confirmed_select
 
     def show_robo_opponent_options(self):
@@ -99,12 +102,15 @@ class Battlefield:
         print(f'Press "2" to select {self.fleet.robots[2].name} ({self.fleet.robots[2].health} health)')
         user_select = int(input('Select a robot for your attack: '))
         while selection is False:
-            if self.fleet.robots[user_select].health > 0:
-                confirmed_select = user_select
-                selection = True
-            elif self.fleet.robots[user_select].health <= 0:
-                print('Your Robot is already demolished (dead). Please select another Robot.')
-                user_select = int(input('Select another robot for your attack: '))
+            if user_select >= 0 and user_select <= 2:
+                if self.fleet.robots[user_select].health > 0:
+                    confirmed_select = user_select
+                    selection = True
+                elif self.fleet.robots[user_select].health <= 0:
+                    print('Your Robot is already demolished. Please select another Robot.')
+                    user_select = int(input('Select another robot for your attack: '))
+            elif user_select > 2 or user_select < 0:
+                user_select = int(input('Invalid entry. Select a robot for your attack: '))
         return confirmed_select
 
     def display_winners(self):
