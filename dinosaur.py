@@ -1,3 +1,5 @@
+#(10 points): As a developer, I want a Dinosaur to have a name, health, and attack power.  
+
 class Dinosaur:
      
     def __init__(self, name, attack_power):
@@ -6,4 +8,5 @@ class Dinosaur:
         self.attack_power = attack_power
 
     def dino_attack(self, targeted_robot):
-        targeted_robot.health -= self.attack_power #tentative need to evaluate
+        targeted_robot.health -= self.attack_power
+
