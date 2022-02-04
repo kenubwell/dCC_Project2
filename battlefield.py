@@ -43,7 +43,7 @@ class Battlefield:
         return match_off
         
 
-    def dino_turn(self): #for loops
+    def dino_turn(self): 
         dinosaur = self.show_dino_opponent_options()
         if self.fleet.robots[0].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[0])
@@ -55,7 +55,7 @@ class Battlefield:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[2])
             print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
 
-    def robo_turn(self): #for loops
+    def robo_turn(self): 
         robot = self.show_robo_opponent_options()
         if self.herd.dinosaurs[0].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[0])
