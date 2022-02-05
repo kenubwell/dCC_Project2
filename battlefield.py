@@ -23,7 +23,7 @@ class Battlefield:
         print(f'Fleet Team: "{self.fleet.robots[0].name}", "{self.fleet.robots[1].name}", "{self.fleet.robots[2].name}"') 
         print(f'Herd Team: "{self.herd.dinosaurs[0].name}", "{self.herd.dinosaurs[1].name}", "{self.herd.dinosaurs[2].name}"') 
         print("Each robot and dinosaur has a 100 health and health gradually decreases per attack. You'll get to select attackers on both sides and turns are random.")
-        print('A winner is declared when all three Robots or three Dinosaurs health reach "0" or below. Let us begin! \n')
+        print('A winner is declared when all three Robots or three Dinosaurs health reach "0". Let us begin! \n')
 
     def battle(self):
         match_off = False
@@ -43,42 +43,75 @@ class Battlefield:
         return match_off
         
 
-    def dino_turn(self): 
+    def dino_turn(self): #for loops
         dinosaur = self.show_dino_opponent_options()
+        negative_health_to_zero = 0
+
         if self.fleet.robots[0].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[0])
-            print(f'\nYou hit {self.fleet.robots[0].name} and its health is now {self.fleet.robots[0].health}!\n')
+            if self.fleet.robots[0].health < 0:
+                print(f'\nYou hit {self.fleet.robots[0].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.fleet.robots[0].name} and its health is now {self.fleet.robots[0].health}!\n')
         elif self.fleet.robots[1].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[1])
-            print(f'\nYou hit {self.fleet.robots[1].name} and its health is now {self.fleet.robots[1].health}!\n')
+            if self.fleet.robots[1].health < 0:
+                print(f'\nYou hit {self.fleet.robots[1].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.fleet.robots[1].name} and its health is now {self.fleet.robots[1].health}!\n')
         elif self.fleet.robots[2].health > 0:
             self.herd.dinosaurs[dinosaur].dino_attack(self.fleet.robots[2])
-            print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
+            if self.fleet.robots[2].health < 0:
+                print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
 
-    def robo_turn(self): 
+
+    def robo_turn(self): #for loops
         robot = self.show_robo_opponent_options()
+        negative_health_to_zero = 0
+
         if self.herd.dinosaurs[0].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[0])
-            print(f'\nYou hit {self.herd.dinosaurs[0].name} and its health is now {self.herd.dinosaurs[0].health}!\n')
+            if self.herd.dinosaurs[0].health < 0:
+                print(f'\nYou hit {self.herd.dinosaurs[0].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.herd.dinosaurs[0].name} and its health is now {self.herd.dinosaurs[0].health}!\n')
         elif self.herd.dinosaurs[1].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[1])
-            print(f'\nYou hit {self.herd.dinosaurs[1].name} and its health is now {self.herd.dinosaurs[1].health}!\n')
+            if self.herd.dinosaurs[1].health < 0:
+                print(f'\nYou hit {self.herd.dinosaurs[1].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.herd.dinosaurs[1].name} and its health is now {self.herd.dinosaurs[1].health}!\n')
         elif self.herd.dinosaurs[2].health > 0:
             self.fleet.robots[robot].robot_attack(self.herd.dinosaurs[2])
-            print(f'\nYou hit {self.herd.dinosaurs[2].name} and its health is now {self.herd.dinosaurs[2].health}!\n')
+            if self.herd.dinosaurs[2].health < 0:
+                print(f'\nYou hit {self.herd.dinosaurs[2].name} and its health is now {negative_health_to_zero}!\n')
+            else:
+                print(f'\nYou hit {self.herd.dinosaurs[2].name} and its health is now {self.herd.dinosaurs[2].health}!\n')
   
 
     def show_dino_opponent_options(self):
         user_select = 0
         confirmed_select = 0
         selection = False
+        negative_number_to_zero = 0
 
         print('Current Dinosaur Herd:')
-        print(f'Press "0" to select {self.herd.dinosaurs[0].name} ({self.herd.dinosaurs[0].health} health)')
-        print(f'Press "1" to select {self.herd.dinosaurs[1].name} ({self.herd.dinosaurs[1].health} health)')
-        print(f'Press "2" to select {self.herd.dinosaurs[2].name} ({self.herd.dinosaurs[2].health} health)')
-        user_select = int(input('Select a dinosaur for your attack: '))
+        if self.herd.dinosaurs[0].health < 0:
+            print(f'Press "0" to select {self.herd.dinosaurs[0].name} ({negative_number_to_zero} health)')
+        else:
+            print(f'Press "0" to select {self.herd.dinosaurs[0].name} ({self.herd.dinosaurs[0].health} health)')
+        if self.herd.dinosaurs[1].health < 0:
+            print(f'Press "1" to select {self.herd.dinosaurs[1].name} ({negative_number_to_zero} health)')    
+        else:
+            print(f'Press "1" to select {self.herd.dinosaurs[1].name} ({self.herd.dinosaurs[1].health} health)')
+        if self.herd.dinosaurs[2].health < 0:    
+            print(f'Press "2" to select {self.herd.dinosaurs[2].name} ({negative_number_to_zero} health)')
+        else:
+            print(f'Press "2" to select {self.herd.dinosaurs[2].name} ({self.herd.dinosaurs[2].health} health)')
         
+        user_select = int(input('Select a dinosaur for your attack: '))
         while selection is False:
             if user_select >= 0 and user_select <= 2:
                 if self.herd.dinosaurs[user_select].health > 0:
@@ -95,11 +128,22 @@ class Battlefield:
         user_select = 0
         confirmed_select = 0
         selection = False
+        negative_number_to_zero = 0
 
         print('Current Robot Fleet:')
-        print(f'Press "0" to select {self.fleet.robots[0].name} ({self.fleet.robots[0].health} health)')
-        print(f'Press "1" to select {self.fleet.robots[1].name} ({self.fleet.robots[1].health} health)')
-        print(f'Press "2" to select {self.fleet.robots[2].name} ({self.fleet.robots[2].health} health)')
+        if self.fleet.robots[0].health < 0:
+            print(f'Press "0" to select {self.fleet.robots[0].name} ({negative_number_to_zero} health)')   
+        else: 
+            print(f'Press "0" to select {self.fleet.robots[0].name} ({self.fleet.robots[0].health} health)')
+        if self.fleet.robots[1].health < 0:
+            print(f'Press "1" to select {self.fleet.robots[1].name} ({negative_number_to_zero} health)')
+        else:    
+            print(f'Press "1" to select {self.fleet.robots[1].name} ({self.fleet.robots[1].health} health)')
+        if self.fleet.robots[2].health <0:
+             print(f'Press "2" to select {self.fleet.robots[2].name} ({negative_number_to_zero} health)')
+        else:
+            print(f'Press "2" to select {self.fleet.robots[2].name} ({self.fleet.robots[2].health} health)')
+
         user_select = int(input('Select a robot for your attack: '))
         while selection is False:
             if user_select >= 0 and user_select <= 2:
@@ -114,12 +158,13 @@ class Battlefield:
         return confirmed_select
 
     def display_winners(self):
+        zero_health = 0
         if (self.fleet.robots[0].health <= 0 and self.fleet.robots[1].health <= 0 and self.fleet.robots[2].health <= 0):
             print('The Extinct Animals Won! (a.k.a. Dinosaurs)')
-            print(f'Destruction Summary: "{self.fleet.robots[0].name}" ({self.fleet.robots[0].health} health), "{self.fleet.robots[1].name}" ({self.fleet.robots[1].health} health), "{self.fleet.robots[2].name}" ({self.fleet.robots[2].health} health).')
+            print(f'Destruction Summary: "{self.fleet.robots[0].name}" ({zero_health} health), "{self.fleet.robots[1].name}" ({zero_health} health), "{self.fleet.robots[2].name}" ({zero_health} health).')
         elif (self.herd.dinosaurs[0].health <= 0 and self.herd.dinosaurs[1].health <= 0 and self.herd.dinosaurs[2].health <= 0):
             print('The Machines Won! (a.k.a. the Robots)')
-            print(f'Extinction Summary: "{self.herd.dinosaurs[0].name}" ({self.herd.dinosaurs[0].health} health), "{self.herd.dinosaurs[1].name}" ({self.herd.dinosaurs[1].health} health), "{self.herd.dinosaurs[2].name}" ({self.herd.dinosaurs[2].health} health).')
+            print(f'Extinction Summary: "{self.herd.dinosaurs[0].name}" ({zero_health} health), "{self.herd.dinosaurs[1].name}" ({zero_health} health), "{self.herd.dinosaurs[2].name}" ({zero_health} health).')
 
 
     
