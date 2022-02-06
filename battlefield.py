@@ -6,6 +6,7 @@ from fleet import Fleet
 from herd import Herd
 import random
 
+
 class Battlefield:
      
     def __init__(self):
@@ -24,9 +25,10 @@ class Battlefield:
         print('Each side entails a team of three. The three Robots are a "Fleet" and the three Dinosaurs are a "Herd".') 
         print(f'Fleet Team: "{self.fleet.robots[0].name}", "{self.fleet.robots[1].name}", "{self.fleet.robots[2].name}"') 
         print(f'Herd Team: "{self.herd.dinosaurs[0].name}", "{self.herd.dinosaurs[1].name}", "{self.herd.dinosaurs[2].name}"') 
-        print("Each robot and dinosaur has a 100 health and health gradually decreases per attack. You'll get to select attackers on both sides and turns are RANDOM.")
-        print('A winner is declared when all three Robots or three Dinosaurs health reach "0". Let us begin! \n')
+        print("Each robot and dinosaur has a 100 health and health gradually decreases per attack. You'll get to select attackers and attack method for both sides.")
+        print('Please note that turns are RANDOM. A winner is declared when all three Robots or three Dinosaurs health reach "0". Let us begin! \n')
 
+    #a method to initiate the battle
     def battle(self):
         match_off = False
 
@@ -44,7 +46,7 @@ class Battlefield:
                     match_off = True      
         return match_off
         
-
+    #a method for the dinosaurs turn and which robot to attack
     def dino_turn(self): 
         dinosaur = self.show_dino_opponent_options()
         negative_health_to_zero = 0
@@ -68,7 +70,7 @@ class Battlefield:
             else:
                 print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
 
-
+    #a method for the robots turn and which dinosaur to attack
     def robo_turn(self): 
         robot = self.show_robo_opponent_options()
         negative_health_to_zero = 0

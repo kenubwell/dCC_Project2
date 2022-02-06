@@ -11,8 +11,8 @@ class Herd:
         self.create_herd()
 
     def create_herd(self):
-        dino_one = Dinosaur('Godzilla', 50)
-        dino_two = Dinosaur('Sauron', 45)
-        dino_three = Dinosaur('Yoshi', 40)
+        dino_one = Dinosaur('Godzilla', 0)
+        dino_two = Dinosaur('Sauron', 0)
+        dino_three = Dinosaur('Yoshi', 0)
 
         self.dinosaurs = [dino_one, dino_two, dino_three]
