@@ -12,17 +12,19 @@ class Battlefield:
         self.fleet = Fleet()
         self.herd = Herd()
 
+    #the method that runs the entire game (from other methods)
     def run_game(self): 
         self.display_welcome()
         self.battle()
         self.display_winners()
 
+    #a method to display a Welcome and Intro to the game
     def display_welcome(self):
         print('Welcome to "Machines vs. Extinct Animals" a.k.a. "Robots vs. Dinosaurs". The following are the rules of the game:') 
         print('Each side entails a team of three. The three Robots are a "Fleet" and the three Dinosaurs are a "Herd".') 
         print(f'Fleet Team: "{self.fleet.robots[0].name}", "{self.fleet.robots[1].name}", "{self.fleet.robots[2].name}"') 
         print(f'Herd Team: "{self.herd.dinosaurs[0].name}", "{self.herd.dinosaurs[1].name}", "{self.herd.dinosaurs[2].name}"') 
-        print("Each robot and dinosaur has a 100 health and health gradually decreases per attack. You'll get to select attackers on both sides and turns are random.")
+        print("Each robot and dinosaur has a 100 health and health gradually decreases per attack. You'll get to select attackers on both sides and turns are RANDOM.")
         print('A winner is declared when all three Robots or three Dinosaurs health reach "0". Let us begin! \n')
 
     def battle(self):
@@ -43,7 +45,7 @@ class Battlefield:
         return match_off
         
 
-    def dino_turn(self): #for loops
+    def dino_turn(self): 
         dinosaur = self.show_dino_opponent_options()
         negative_health_to_zero = 0
 
@@ -67,7 +69,7 @@ class Battlefield:
                 print(f'\nYou hit {self.fleet.robots[2].name} and its health is now {self.fleet.robots[2].health}!\n')
 
 
-    def robo_turn(self): #for loops
+    def robo_turn(self): 
         robot = self.show_robo_opponent_options()
         negative_health_to_zero = 0
 
@@ -91,6 +93,7 @@ class Battlefield:
                 print(f'\nYou hit {self.herd.dinosaurs[2].name} and its health is now {self.herd.dinosaurs[2].health}!\n')
   
 
+    #a method to give the user options to choose which dino to use
     def show_dino_opponent_options(self):
         user_select = 0
         confirmed_select = 0
@@ -121,9 +124,10 @@ class Battlefield:
                     print('Your Dino is already re-extinct. Please select another Dino.')
                     user_select = int(input('Select another robot for your attack: '))
             elif user_select > 2 or user_select < 0:
-                user_select = int(input('Invalid entry. Select a robot for your attack: '))
+                user_select = int(input('Invalid entry. Select a dino for your attack: '))
         return confirmed_select
 
+    #a method to give the user options to choose which robot to use
     def show_robo_opponent_options(self):
         user_select = 0
         confirmed_select = 0
@@ -157,6 +161,8 @@ class Battlefield:
                 user_select = int(input('Invalid entry. Select a robot for your attack: '))
         return confirmed_select
 
+
+    #a method to display the winner of the game
     def display_winners(self):
         zero_health = 0
         if (self.fleet.robots[0].health <= 0 and self.fleet.robots[1].health <= 0 and self.fleet.robots[2].health <= 0):
